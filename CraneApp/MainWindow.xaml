@@ -1,0 +1,63 @@
+﻿<Window xmlns:h="http://helix-toolkit.org/wpf"  x:Class="CraneApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CraneApp"
+        mc:Ignorable="d"
+        Title="CraneApp.MainWindow" Height="800" Width="1000.0" Loaded="Window_Loaded" MouseMove="Window_MouseMove" MouseLeftButtonDown="Window_MouseLeftButtonDown" MouseRightButtonDown="Window_MouseRightButtonDown">
+    <Grid>
+        
+        <Menu VerticalAlignment="Top" Height="30">
+            <!--<MenuItem Header="Load move from XML"></MenuItem>-->
+            <MenuItem Header="File">
+                <MenuItem Header="Excel Spreadsheet">
+                    <MenuItem Header="Load moves from Excel" x:Name="BtnLoadXL" Click="BtnLoadXL_Click"></MenuItem>
+                    <MenuItem Header="Save moves to Excel" x:Name="BtnSaveXL" Click="BtnSaveXL_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="CraneApp XML">
+                    <MenuItem Header="Load moves from XML" x:Name="BtnLoad" Click="BtnLoad_Click"></MenuItem>
+                    <MenuItem Header="Save moves to XML" x:Name="BtnSave" Click="BtnSave_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <TabControl Height="740" VerticalAlignment="Top" Margin="0,30,0,30" x:Name="TabController">
+            <TabItem Header="Data View">
+                <Grid>
+                    <DataGrid x:Name="MoveDataGrid" Loaded="MoveDataGrid_Loaded" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="AddMovesToItem_Click" Content="Draw this" Margin="2"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Graphical View" x:Name="TabGraphical">
+                <Grid>
+                    <h:HelixViewport3D x:Name="ThreeDModel" Margin="10" Title="Containment" ShowFrameRate="True" IsHeadLightEnabled="True" RotateAroundMouseDownPoint="True" ShowCameraInfo="True" ShowFieldOfView="True" Orthographic="True" EnableCurrentPosition="True" CalculateCursorPosition="True" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Optimize">
+                <Grid Background="#FFE5E5E5">
+                    <DockPanel Height="50" VerticalAlignment="Top" Background="White">
+                        <Button Content="Calculate" Width="100" Margin="10" HorizontalAlignment="Left" x:Name="btnCalc" Click="btnCalc_Click"></Button>
+                    </DockPanel>
+                    <TextBox IsReadOnly="true" VerticalAlignment="Top" Margin="0,65,0,0" x:Name="tbCalc" Height="633" VerticalScrollBarVisibility="Visible"></TextBox>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StatusBar VerticalAlignment="Bottom" Height="28">
+            <Button x:Name="AddMove" Content="Add Moves Graphically" Click="AddMove_Click"></Button>
+            <Button x:Name="LastMove" Content="Click this to add last point in move" Click="LastMove_Click"></Button>
+            <StatusBarItem x:Name="cmdTxt"></StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

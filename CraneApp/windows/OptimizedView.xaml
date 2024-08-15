@@ -1,0 +1,47 @@
+﻿<Window xmlns:h="http://helix-toolkit.org/wpf" x:Class="CraneApp.windows.OptimizedView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CraneApp.windows"
+        mc:Ignorable="d"
+        Title="OptimizedView" Height="800" Width="1000.0" Loaded="Window_Loaded">
+    <Grid>
+        <Menu Height="30" VerticalAlignment="Top">
+            <MenuItem Header="Save As">
+                <MenuItem Header="Save as XML File" Click="MenuItem_Click"></MenuItem>
+                <MenuItem Header="Save as Excel File" Click="MenuItem_Click_1"></MenuItem>
+                <MenuItem Header="Append to an Excel File" Click="MenuItem_Click_2"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Margin="10,36,10,10">
+            <TabItem Header="Grid View">
+                <Grid>
+                    <StackPanel>
+                        <DockPanel VerticalAlignment="Top" Margin="0" Height="50">
+                            <Label Content="Select a combination: " Margin="10"></Label>
+                            <ComboBox Width="311" Margin="10" HorizontalAlignment="Left" x:Name="ComboBoxSelect" SelectionChanged="ComboBoxSelect_SelectionChanged">
+                                
+                            </ComboBox>
+                            <Label Margin="10" x:Name="lblDistance" Content="Total Distance: "></Label>
+
+                        </DockPanel>
+                        <DataGrid x:Name="optimizeddataGrid"></DataGrid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Graphical View">
+                <Grid>
+                    <DockPanel Height="35" VerticalAlignment="Top">
+                        <Button Content="Draw it" Margin="2" Width="100" HorizontalAlignment="Left" Click="Button_Click">
+                        </Button>
+                        <Label Content="This feature is still in development" FontSize="16" FontWeight="Bold"></Label>
+                    </DockPanel>
+                    <h:HelixViewport3D x:Name="GraphicViewOpt" Margin="10,35,10,10" Title="Containment" ShowFrameRate="True" IsHeadLightEnabled="False" RotateAroundMouseDownPoint="True" ShowCameraInfo="True" ShowFieldOfView="True" Orthographic="True" EnableCurrentPosition="True" CalculateCursorPosition="True" >
+                        <h:SunLight/>
+                    </h:HelixViewport3D>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
